@@ -1,0 +1,35 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>plydom — counter</title>
+<style>
+body {
+  font: 16px/1.5 system-ui, sans-serif;
+  margin: 3rem auto;
+  max-width: 28rem;
+}
+.counter {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+button {
+  font: inherit;
+  padding: .3rem .8rem;
+}
+.value {
+  font-variant-numeric: tabular-nums;
+  font-size: 1.5rem;
+  min-width: 3ch;
+  text-align: center;
+}
+.value.below {
+  color: #b00020;
+}
+.hint {
+  flex-basis: 100%;
+  margin: .25rem 0 0;
+  color: #666;
+}
+</style>
+<script type="module" src="./script.js"></script>
