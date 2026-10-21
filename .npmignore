@@ -1,5 +1,6 @@
 # npm uses this file instead of .gitignore. dist/ is build output and must ship.
 test
+demo
 .zed
 .github
 eslint.config.js
