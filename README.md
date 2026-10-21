@@ -127,6 +127,17 @@ This is where a binding that needs the real node goes, such as WanaKana's `bind`
 and `unbind` on an input. Only an element has `act`. An option that changes is a
 stream the action subscribes to and disposes with its handle.
 
+`act`, `use`, and `output` are also functions, with the receiver last:
+
+```ts
+import * as P from '@algosail/ply'
+
+P.pipe([
+  D.use({ bumped: 'click' }),
+  D.output({ count }),
+])(H.button(['+']))
+```
+
 ## Component
 
 ```ts

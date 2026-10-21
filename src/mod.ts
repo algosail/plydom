@@ -96,6 +96,12 @@ export function node(v: View): Node {
 
 export { AskedTooLate, NoSuchPart, ON, OUT, outsOf } from './output.ts'
 
+export { act } from './act.ts'
+
+export { use } from './use.ts'
+
+export { output } from './output.ts'
+
 /**
  * Show `onTrue` while the stream is true, and nothing while it is false.
  * @example

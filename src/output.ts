@@ -160,6 +160,21 @@ export function setGiven<Self extends object, G extends Outs>(
   return target as Self & Giving<G>
 }
 
+type GivenOf<V, G extends Outs> = V extends { output(given: Outs): unknown } ? V & Giving<G>
+  : { readonly output: 'is only for a view, a branch, or a list' }
+
+/**
+ * Hands `given` out of a view, a branch, or a list. The receiver comes last.
+ * @example
+ * ```ts
+ * D.output ({ count }) (H.p ([count]))
+ * ```
+ */
+export function output<G extends Outs>(given: G) {
+  return <V>(view: V): GivenOf<V, G> =>
+    (view as unknown as { output(given: G): GivenOf<V, G> }).output (given)
+}
+
 export function outsOf(target: View | S.Source<unknown>): Sources {
   const streams = fieldsOf (target)?.[OUT]
   return streams !== undefined && everySource (streams) ? streams : NO_OUTPUTS
