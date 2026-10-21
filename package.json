@@ -2,9 +2,20 @@
   "name": "@algosail/plydom",
   "version": "0.1.0",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/algosail/plydom.git"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "engines": {
-    "node": ">=22.7"
+    "node": ">=24"
   },
   "exports": {
     ".": {
