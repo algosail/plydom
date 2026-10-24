@@ -21,13 +21,13 @@ const isZero = P.equals<number> (0)
 const fromKeydown = D.fromEvent<KeyboardEvent> ('keydown')
 const getKey = (e: KeyboardEvent) => e.key
 
-const keyboardAction = P.pipe ([
+const keyboardAction = P.pipe (
   getKey,
   P.flip<KeyActionLookup> (P.lookup) ({
     ArrowUp: inc,
     ArrowDown: dec,
   }),
-])
+)
 
 const applyStep = (n: number, apply: Step) => apply (n)
 
@@ -43,7 +43,7 @@ const Counter = D.component ((props: Props, on: On) => {
   const atZero = P.map (isZero) (count)
 
   const outputClass = P.map
-    (P.pipe ([P.lt (0), P.boolean ('value') ('value below')]))
+    (P.pipe (P.lt (0), P.boolean ('value') ('value below')))
     (count)
 
   return H.section ({ class: 'counter' }, [

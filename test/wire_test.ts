@@ -70,15 +70,11 @@ const nestedFree = D.use ({ sent: 'submit' }) (D.el ('div', {}, [
   D.el ('button', {}, ['×']).use ({ dropped: 'click' }),
 ]))
 
-const piped = P.pipe ([
-  D.use ({ bumped: 'click' }),
-  D.output ({ count }),
-]) (D.el ('button', {}, ['+']))
+const piped = P.pipe (D.use ({ bumped: 'click' }), D.output ({ count }))
+  (D.el ('button', {}, ['+']))
 
-const pipedNested = P.pipe ([
-  D.use ({ sent: 'submit' }),
-  D.output ({ count }),
-]) (D.el ('div', {}, [D.el ('button', {}, ['×']).use ({ dropped: 'click' })]))
+const pipedNested = P.pipe (D.use ({ sent: 'submit' }), D.output ({ count }))
+  (D.el ('div', {}, [D.el ('button', {}, ['×']).use ({ dropped: 'click' })]))
 const pipedNestedMethod = D.el ('div', {}, [
   D.el ('button', {}, ['×']).use ({ dropped: 'click' }),
 ]).use ({ sent: 'submit' }).output ({ count })
@@ -228,10 +224,10 @@ test ('act: runs when the element is mounted and disposes with it', () => {
 
 test ('pipe: use then output keeps the click and the list key', () => {
   const gift = S.holdWith (1) (S.never<number> ())
-  const button = P.pipe ([
+  const button = P.pipe (
     D.use ({ bumped: 'click' }),
     D.output ({ gift }),
-  ]) (D.el ('button', {}, ['+']))
+  ) (D.el ('button', {}, ['+']))
   const bumps: string[] = []
   const bump = S.subscribe (() => bumps.push ('bumped')) (button[D.OUT].bumped)
   const box = dom.box ()
@@ -239,10 +235,10 @@ test ('pipe: use then output keeps the click and the list key', () => {
   click (box.querySelector ('button'))
   S.dispose (bump)
 
-  const list = P.pipe ([
+  const list = P.pipe (
     D.output ({ gift }),
     D.use ({ dropped: 'dropped' }),
-  ]) (
+  ) (
     D.rows ((n: number) => n) (() =>
       D.el ('li', {}, [D.el ('button', {}, ['x']).use ({ dropped: 'click' })]),
     ) (S.holdWith<readonly number[]> ([4]) (S.never ())),
